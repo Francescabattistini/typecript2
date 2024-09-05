@@ -1,7 +1,23 @@
 import { Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { News } from "../interfaces/iNews";
+
 import { NavLink } from "react-router-dom";
+
+export interface News {
+  id: number;
+  title: string;
+  url: string;
+  image_url: string;
+  news_site: string;
+  summary: string;
+  published_at: string;
+  updated_at: Date;
+  featured: boolean;
+  launches: any[];
+  events: any[];
+}
+
+
 
 interface SingleNewsProp {
   news: News;

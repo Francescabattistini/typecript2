@@ -1,13 +1,35 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Article } from "../interfaces/iArticle";
-import { Col, Row, Spinner } from "react-bootstrap";
+
+import { Col, Row, Spinner } from "react-bootstrap"
+
+export interface Article {
+  id: number;
+  title: string;
+  url: string;
+  image_url: string;
+  news_site: string;
+  summary: string;
+  published_at: string;
+  updated_at: Date;
+  featured: boolean;
+  launches?: Launch[];
+  events?: any[];
+}
+
+export interface Launch {
+  launch_id: string;
+  provider: string;
+}
+
+
+
 
 const Article = () => {
-  const [article, setArticle] = useState<Article | null>(null);
+  const [article, setArticle] = useState <Article | null> (null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const params = useParams();
+  const params = useParams();// permette di accedere ai parametri di un oggetto ad esempio un id
   const navigate = useNavigate();
 
   const fetchArticle = async () => {
@@ -29,7 +51,7 @@ const Article = () => {
 
   useEffect(() => {
     fetchArticle();
-  }, []);
+  }, []); // all'avvio fammi la fetch
 
   return isLoading ? (
     <div className="d-flex justify-content-center my-4">
@@ -38,6 +60,8 @@ const Article = () => {
   ) : (
     <>
       <h1 className="mb-3">{article?.title}</h1>
+      // usiamo article? perchè lo stato o è article o è null usando ? diciamo Se article è un oggetto valido, 
+      allora l'operatore accede alla proprietà title di article.
       <Row>
         <Col xs="12">
           <img

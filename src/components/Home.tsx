@@ -1,8 +1,23 @@
 import { useEffect, useState } from "react";
 import { Row, Spinner } from "react-bootstrap";
-import { News } from "../interfaces/iNews";
+
 import SingleNews from "./SingleNews";
 import { useNavigate } from "react-router-dom";
+
+export interface News {
+  id: number;
+  title: string;
+  url: string;
+  image_url: string;
+  news_site: string;
+  summary: string;
+  published_at: string;
+  updated_at: Date;
+  featured: boolean;
+  launches: any[];
+  events: any[];
+}
+
 
 const Home = () => {
   const [news, setNews] = useState<News[]>([]);

@@ -1,7 +1,7 @@
 const SpaceFooter = () => {
   return (
     <footer className="text-light">
-      <div className="d-flex flex-column justify-content-center align-items-center gap-1">
+      <div className="d-flex flex-column align-items-center  gap-1">
         <p className="mt-3">SpaceX © 2024</p>
         <div className="d-flex gap-3 mb-4">
           <a
