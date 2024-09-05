@@ -1,0 +1,15 @@
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fixed-height {
+  height: 300px;
+  object-fit: cover;
+}
+
+footer {
+  background-color: #2b3036;
+}
