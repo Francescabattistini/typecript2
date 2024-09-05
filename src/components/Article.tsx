@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Col, Row, Spinner } from "react-bootstrap"
+import { Col, Row, Spinner } from "react-bootstrap";
 
 export interface Article {
   id: number;
@@ -22,25 +22,29 @@ export interface Launch {
   provider: string;
 }
 
-
-
-
 const Article = () => {
-  const [article, setArticle] = useState <Article | null> (null);
+  const [article, setArticle] = useState<Article | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const params = useParams();// permette di accedere ai parametri di un oggetto ad esempio un id
-  const navigate = useNavigate();
+  const params = useParams(); // permette di accedere ai parametri di un oggetto ad esempio un id
+  const navigate = useNavigate(); // ci permette di navigare in un'altra pagina se va qualcosa storto
 
+  
+ 
   const fetchArticle = async () => {
     try {
-      const resp = await fetch("https://api.spaceflightnewsapi.net/v4/articles/" + params.id);
+        //Prima, aspettiamo la storia.
+      const resp = await fetch(
+        "https://api.spaceflightnewsapi.net/v4/articles/" + params.id
+      );
+        //Quando arriva, la mostriamo.
       if (resp.ok) {
         const article: Article = await resp.json();
-        setArticle(article);
+        setArticle(article); // se tutto va bene cambia lo stato e prendi article  e metti tutto nello spazio vuoto
       } else {
         throw new Error("Errore nel fetch");
-      }
+      } 
+      // Se qualcosa va storto, andiamo su una pagina di errore.)
     } catch (error) {
       console.log(error);
       navigate("/error");
@@ -60,8 +64,9 @@ const Article = () => {
   ) : (
     <>
       <h1 className="mb-3">{article?.title}</h1>
-      // usiamo article? perchè lo stato o è article o è null usando ? diciamo Se article è un oggetto valido, 
-      allora l'operatore accede alla proprietà title di article.
+      // usiamo article? perchè lo stato o è article o è null usando ? diciamo
+      Se article è un oggetto valido, allora l'operatore accede alla proprietà
+      title di article.
       <Row>
         <Col xs="12">
           <img

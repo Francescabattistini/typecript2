@@ -17,8 +17,6 @@ export interface News {
   events: any[];
 }
 
-
-
 interface SingleNewsProp {
   news: News;
 }
